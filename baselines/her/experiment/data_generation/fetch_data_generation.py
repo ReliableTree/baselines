@@ -10,7 +10,7 @@ infos = []
 
 def main():
     env = gym.make('FetchPickAndPlace-v1')
-    numItr = 100
+    numItr = 10
     initStateSpace = "random"
     env.reset()
     print("Reset!")

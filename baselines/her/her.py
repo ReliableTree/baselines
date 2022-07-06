@@ -11,6 +11,9 @@ from baselines.common.mpi_moments import mpi_moments
 import baselines.her.experiment.config as config
 from baselines.her.rollout import RolloutWorker
 
+global ROLLOUTS
+ROLLOUTS = 0
+
 def mpi_average(value):
     if not isinstance(value, list):
         value = [value]
@@ -23,7 +26,7 @@ def train(*, policy, rollout_worker, evaluator,
           n_epochs, n_test_rollouts, n_cycles, n_batches, policy_save_interval,
           save_path, demo_file, **kwargs):
     rank = MPI.COMM_WORLD.Get_rank()
-
+    global ROLLOUTS
     if save_path:
         latest_policy_path = os.path.join(save_path, 'policy_latest.pkl')
         best_policy_path = os.path.join(save_path, 'policy_best.pkl')
